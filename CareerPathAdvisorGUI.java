@@ -1,4 +1,4 @@
-// Name: Orin Thomas
+// Name: Orin Thomas, Gloria, Israel 
 // Date: 03/22/2025
 // Career Path Advisor GUI App
 
