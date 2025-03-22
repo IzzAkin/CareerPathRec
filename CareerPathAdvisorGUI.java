@@ -1,19 +1,18 @@
-// Name: Orin Thomas, Gloria, Israel 
+// Name: Orin Thomas, 
 // Date: 03/22/2025
 // Career Path Advisor GUI App
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+
 
 public class CareerPathAdvisorGUI {
 
     // GUI Components
-    private JFrame frame;
-    private JTextField nameField;
-    private JComboBox<String> interestBox, skillBox;
-    private JTextArea resultArea;
+    private final JFrame frame;
+    private final JTextField nameField;
+    private final JComboBox<String> interestBox, skillBox;
+    private final JTextArea resultArea;
 
     // Career Options & Resources
     private final String[] interests = {"Technology", "Business", "Healthcare", "Arts and Media", "Education"};
@@ -45,11 +44,7 @@ public class CareerPathAdvisorGUI {
         skillBox = new JComboBox<>(skills);
 
         JButton submitButton = new JButton("Get Career Suggestions");
-        submitButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                displayCareerSuggestions();
-            }
-        });
+        submitButton.addActionListener(e -> displayCareerSuggestions());
 
         // Add inputs to the panel
         inputPanel.add(nameLabel);
@@ -97,78 +92,72 @@ public class CareerPathAdvisorGUI {
     }
 
     // Suggest career paths based on interest and skill
-    private String getCareerSuggestions(String interest, String skill) {
-        switch (interest) {
-            case "Technology":
-                if (skill.equals("Problem-solving")) {
-                    return "✅ Cybersecurity Analyst\n✅ Software Developer\n✅ Systems Architect";
-                } else if (skill.equals("Analytical thinking")) {
-                    return "✅ Data Scientist\n✅ AI Engineer\n✅ Network Administrator";
-                } else {
-                    return "✅ IT Support Specialist\n✅ Web Developer\n✅ Technical Writer";
-                }
+       private String getCareerSuggestions(String interest, String skill) {
+        return switch (interest) {
+            case "Technology" -> switch (skill) {
+                case "Problem-solving" -> "✅ Cybersecurity Analyst\n✅ Software Developer\n✅ Systems Architect";
+                case "Analytical thinking" -> "✅ Data Scientist\n✅ AI Engineer\n✅ Network Administrator";
+                case "Communication" -> "✅ Technical Writer\n✅ IT Consultant\n✅ Product Manager";
+                case "Creativity" -> "✅ UX/UI Designer\n✅ Game Developer\n✅ Digital Artist";
+                case "Leadership" -> "✅ IT Project Manager\n✅ CTO\n✅ Tech Team Lead";
+                default -> "✅ IT Support Specialist\n✅ Web Developer\n✅ System Administrator";
+            };
 
-            case "Business":
-                if (skill.equals("Communication")) {
-                    return "✅ Marketing Manager\n✅ Public Relations Specialist\n✅ Business Analyst";
-                } else if (skill.equals("Leadership")) {
-                    return "✅ Project Manager\n✅ HR Specialist\n✅ Entrepreneur";
-                } else {
-                    return "✅ Financial Analyst\n✅ Operations Manager\n✅ Consultant";
-                }
+            case "Business" -> switch (skill) {
+                case "Communication" -> "✅ Marketing Manager\n✅ Public Relations Specialist\n✅ Business Analyst";
+                case "Leadership" -> "✅ Project Manager\n✅ HR Specialist\n✅ Entrepreneur";
+                case "Analytical thinking" -> "✅ Financial Analyst\n✅ Business Intelligence Analyst\n✅ Risk Manager";
+                case "Problem-solving" -> "✅ Management Consultant\n✅ Operations Manager\n✅ Strategy Analyst";
+                case "Creativity" -> "✅ Brand Manager\n✅ Innovation Consultant\n✅ Product Developer";
+                default -> "✅ Financial Analyst\n✅ Operations Manager\n✅ Consultant";
+            };
 
-            case "Healthcare":
-                if (skill.equals("Analytical thinking")) {
-                    return "✅ Medical Researcher\n✅ Pharmacist\n✅ Geneticist";
-                } else if (skill.equals("Problem-solving")) {
-                    return "✅ Doctor\n✅ Nurse\n✅ Emergency Medical Technician (EMT)";
-                } else {
-                    return "✅ Therapist\n✅ Counselor\n✅ Nutritionist";
-                }
+            case "Healthcare" -> switch (skill) {
+                case "Analytical thinking" -> "✅ Medical Researcher\n✅ Pharmacist\n✅ Geneticist";
+                case "Problem-solving" -> "✅ Doctor\n✅ Nurse\n✅ Emergency Medical Technician (EMT)";
+                case "Communication" -> "✅ Healthcare Administrator\n✅ Patient Advocate\n✅ Medical Liaison";
+                case "Leadership" -> "✅ Hospital Administrator\n✅ Clinical Director\n✅ Healthcare Manager";
+                case "Creativity" -> "✅ Art Therapist\n✅ Occupational Therapist\n✅ Health Education Specialist";
+                default -> "✅ Therapist\n✅ Counselor\n✅ Nutritionist";
+            };
 
-            case "Arts and Media":
-                if (skill.equals("Creativity")) {
-                    return "✅ Graphic Designer\n✅ Video Editor\n✅ Animator";
-                } else {
-                    return "✅ Writer\n✅ Journalist\n✅ Social Media Manager";
-                }
+            case "Arts and Media" -> switch (skill) {
+                case "Creativity" -> "✅ Graphic Designer\n✅ Video Editor\n✅ Animator";
+                case "Communication" -> "✅ Journalist\n✅ Content Creator\n✅ Public Speaker";
+                case "Leadership" -> "✅ Creative Director\n✅ Production Manager\n✅ Studio Manager";
+                case "Problem-solving" -> "✅ Film Editor\n✅ Technical Artist\n✅ Production Coordinator";
+                case "Analytical thinking" -> "✅ Media Analyst\n✅ Art Director\n✅ Digital Marketing Analyst";
+                default -> "✅ Writer\n✅ Journalist\n✅ Social Media Manager";
+            };
 
-            case "Education":
-                if (skill.equals("Leadership")) {
-                    return "✅ School Principal\n✅ Academic Advisor\n✅ College Dean";
-                } else {
-                    return "✅ Teacher\n✅ Curriculum Developer\n✅ Special Education Instructor";
-                }
+            case "Education" -> switch (skill) {
+                case "Leadership" -> "✅ School Principal\n✅ Academic Advisor\n✅ College Dean";
+                case "Communication" -> "✅ Teacher\n✅ Educational Consultant\n✅ Corporate Trainer";
+                case "Creativity" -> "✅ Art Teacher\n✅ Educational Content Creator\n✅ Instructional Designer";
+                case "Problem-solving" -> "✅ Special Education Teacher\n✅ Educational Technologist\n✅ School Counselor";
+                case "Analytical thinking" -> "✅ Educational Researcher\n✅ Curriculum Analyst\n✅ Assessment Specialist";
+                default -> "✅ Teacher\n✅ Curriculum Developer\n✅ Special Education Instructor";
+            };
 
-            default:
-                return "⚠️ No suggestions available. Please select valid options.";
-        }
+            default -> "⚠️ No suggestions available. Please select valid options.";
+        };
     }
 
     // Recommend resources based on selected interest
-    private String getLearningResources(String interest) {
-        switch (interest) {
-            case "Technology":
-                return "📚 Coursera, Udemy, and Codecademy for technology-related courses.";
-            case "Business":
-                return "📚 LinkedIn Learning, HubSpot Academy, and Harvard Business Review.";
-            case "Healthcare":
-                return "📚 Khan Academy, Coursera (Health), and PubMed for medical knowledge.";
-            case "Arts and Media":
-                return "📚 Skillshare, MasterClass, and Adobe Creative Cloud Tutorials.";
-            case "Education":
-                return "📚 EdX, FutureLearn, and Khan Academy for education development.";
-            default:
-                return "⚠️ No resources available.";
-        }
+       private String getLearningResources(String interest) {
+        return switch (interest) {
+            case "Technology" -> "📚 Coursera, Udemy, and Codecademy for technology-related courses.";
+            case "Business" -> "📚 LinkedIn Learning, HubSpot Academy, and Harvard Business Review.";
+            case "Healthcare" -> "📚 Khan Academy, Coursera (Health), and PubMed for medical knowledge.";
+            case "Arts and Media" -> "📚 Skillshare, MasterClass, and Adobe Creative Cloud Tutorials.";
+            case "Education" -> "📚 EdX, FutureLearn, and Khan Academy for education development.";
+            default -> "⚠️ No resources available.";
+        };
     }
 
     // Main method to run the app
+    // Main method to run the app
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new CareerPathAdvisorGUI();
-            }
-        });
+        SwingUtilities.invokeLater(() -> new CareerPathAdvisorGUI());
     }
 }
