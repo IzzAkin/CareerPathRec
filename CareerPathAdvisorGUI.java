@@ -1,4 +1,4 @@
-// Name: Orin Thomas, 
+// Name: Israel Akinwunmi 
 // Date: 03/22/2025
 // Career Path Advisor GUI App
 
